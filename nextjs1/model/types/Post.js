@@ -1,14 +1,4 @@
-import {
-  nonNull,
-  nullable,
-  objectType,
-  extendType,
-  stringArg,
-  intArg,
-  enumType,
-  inputObjectType,
-  list,
-} from 'nexus';
+import { objectType } from 'nexus';
 import { User } from './User';
 
 export const Post = objectType({

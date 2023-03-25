@@ -1,14 +1,4 @@
-import {
-  nonNull,
-  nullable,
-  objectType,
-  extendType,
-  stringArg,
-  intArg,
-  enumType,
-  inputObjectType,
-  list,
-} from 'nexus';
+import { objectType, extendType, list, nonNull, stringArg } from 'nexus';
 import { Post } from './Post';
 
 export const User = objectType({
@@ -22,6 +12,39 @@ export const User = objectType({
       async resolve(parent, args, context, info) {
         const authorId = parent.id;
         return context.db.post.findMany({ where: { authorId } });
+      },
+    });
+  },
+});
+
+export const UserQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.field('users', {
+      type: list(User),
+      args: {},
+      async resolve(parent, args, context, info) {
+        return context.db.user.findMany({});
+      },
+    });
+  },
+});
+
+export const UserMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.field('newUser', {
+      type: User,
+      args: {
+        email: nonNull(stringArg()),
+        name: nonNull(stringArg()),
+      },
+      async resolve(parent, args, context, info) {
+        const data = {
+          email: args.email,
+          name: args.name,
+        };
+        return context.db.user.create({ data });
       },
     });
   },
