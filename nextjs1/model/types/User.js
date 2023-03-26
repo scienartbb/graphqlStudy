@@ -1,4 +1,11 @@
-import { objectType, extendType, list, nonNull, stringArg } from 'nexus';
+import {
+  objectType,
+  extendType,
+  list,
+  nonNull,
+  stringArg,
+  queryField,
+} from 'nexus';
 import { Post } from './Post';
 
 export const User = objectType({
@@ -29,6 +36,24 @@ export const UserQuery = extendType({
     });
   },
 });
+
+// export const UserQuery = queryField((t) => {
+//   t.connectionField('users', {
+//     type: list(User),
+//     args: {},
+//     async resolve(parent, args, context, info) {
+//       return context.db.user.findMany({});
+//     },
+//   });
+// });
+
+// export const q = queryField('users', {
+//   type: list(User),
+//   args: {},
+//   async resolve(parent, args, context, info) {
+//     return context.db.user.findMany({});
+//   },
+// });
 
 export const UserMutation = extendType({
   type: 'Mutation',
