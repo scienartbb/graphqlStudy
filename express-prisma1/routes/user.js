@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { v4 } from 'uuid';
 import db from '../db.js';
 
 const app = Router();
-const arr = [];
+
 app.get('/', async (req, res) => {
   const r = await db.user.findMany({});
   res.json(r);
