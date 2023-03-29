@@ -6,7 +6,6 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { schema } from './schema.js';
 
 const app = express();
-app.use(json());
 
 const server = new ApolloServer({
   schema,
