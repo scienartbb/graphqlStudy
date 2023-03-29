@@ -23,6 +23,16 @@ app.get('/:id', async (req, res) => {
   });
   res.json(r);
 });
+app.put('/:id/:name', async (req, res) => {
+  const { id, name } = req.params;
+  const data = { name };
+  const where = { id: parseInt(id) };
+  const r = await db.user.update({
+    where,
+    data,
+  });
+  res.json(r);
+});
 app.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const where = { id: parseInt(id) };
