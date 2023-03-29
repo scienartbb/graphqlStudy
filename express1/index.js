@@ -1,14 +1,14 @@
-import express from 'express';
+const express = require('express');
+const checkAuth = require('./middleware/checkAuth');
 const app = express();
-const port = 3000;
+app.use(express.json());
+
+const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('<h1>/</h1>');
 });
-
-app.use(express.static('public'));
-app.use('/d', express.static('public'));
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.use('', checkAuth, require('./routes/todos'));
+app.listen(PORT, () => {
+  console.log(`Now listening port: ${PORT}`);
 });
