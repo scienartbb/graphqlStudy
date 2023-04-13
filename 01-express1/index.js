@@ -6,7 +6,7 @@ app.use(express.json());
 const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.send('<h1>/</h1>');
+  res.send('<h1>/    ad!!!!#@#fasdf </h1>');
 });
 app.use('', checkAuth, require('./routes/todos'));
 app.listen(PORT, () => {
